@@ -42,8 +42,8 @@ PRODUCT_GENERIC_PROPERTIES += \
     ro.sf.lcd_density=480
 
 # HWUI and Dalvik VM overrides
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-hwui-memory.mk)
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk)
+#$(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-hwui-memory.mk)
+#$(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk)
 
 # Permissions
 PRODUCT_COPY_FILES += \
