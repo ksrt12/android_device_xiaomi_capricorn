@@ -158,6 +158,9 @@ TARGET_FS_CONFIG_GEN := $(VENDOR_PATH)/config.fs
 # Init
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
 
+# Java 9
+EXPERIMENTAL_USE_OPENJDK9 :=true
+
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
 
