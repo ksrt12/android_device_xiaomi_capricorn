@@ -128,6 +128,10 @@ PRODUCT_COPY_FILES += \
 # Bluetooth
 PRODUCT_PACKAGES += \
     libbt-vendor
+    
+# Calendar AOSP
+PRODUCT_PACKAGES += \
+    Calendar
 
 # Camera
 PRODUCT_PACKAGES += \
