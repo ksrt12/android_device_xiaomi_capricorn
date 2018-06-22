@@ -16,7 +16,7 @@
 
 BOARD_VENDOR := xiaomi
 
-VENDOR_PATH  := device/xiaomi/gemini
+VENDOR_PATH  := device/xiaomi/capricorn
 
 # Architecture
 TARGET_ARCH := arm64
@@ -59,7 +59,7 @@ TARGET_KERNEL_SOURCE := kernel/xiaomi/msm8996
 TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_KERNEL_CLANG_VERSION := 7.0
 #TARGET_KERNEL_CONFIG := mod_defconfig
-TARGET_KERNEL_CONFIG := gemini_defconfig
+TARGET_KERNEL_CONFIG := capri_defconfig
 #TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-gnu-
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 #KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-7.x/bin
@@ -256,4 +256,4 @@ WIFI_DRIVER_FW_PATH_P2P := "p2p"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit from the proprietary version
--include vendor/xiaomi/gemini/BoardConfigVendor.mk
+-include vendor/xiaomi/capricorn/BoardConfigVendor.mk
