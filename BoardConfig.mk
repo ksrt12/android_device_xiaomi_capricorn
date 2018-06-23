@@ -35,7 +35,7 @@ TARGET_USES_64_BIT_BINDER := true
 
 # Assertions
 TARGET_BOARD_INFO_FILE ?= $(VENDOR_PATH)/board-info.txt
-TARGET_OTA_ASSERT_DEVICE := gemini
+TARGET_OTA_ASSERT_DEVICE := capricorn
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := msm8996
@@ -59,7 +59,7 @@ TARGET_KERNEL_SOURCE := kernel/xiaomi/msm8996
 TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_KERNEL_CLANG_VERSION := 7.0
 #TARGET_KERNEL_CONFIG := mod_defconfig
-TARGET_KERNEL_CONFIG := capri_defconfig
+TARGET_KERNEL_CONFIG := capricorn_defconfig
 #TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-gnu-
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 #KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-7.x/bin

@@ -46,4 +46,4 @@ TARGET_VENDOR := Xiaomi
 TARGET_BOOT_ANIMATION_RES := 1080
 export SKIP_ABI_CHECKS := true
 
-DU_BUILD_TYPE := blinoff82@xda
+DU_BUILD_TYPE := mesziman@xda
