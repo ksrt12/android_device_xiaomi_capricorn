@@ -31,8 +31,7 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
-    android.hardware.camera.provider@2.4-service \
-    camera.device@3.2-impl
+    android.hardware.camera.provider@2.4-service
 
 # Display HIDL
 PRODUCT_PACKAGES += \
@@ -129,11 +128,10 @@ PRODUCT_PACKAGES += \
     android.hidl.manager@1.0 \
     android.hidl.manager@1.0-java
 
-#QTI camera (needed for IMS)
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.camera.device@1.0 \
-    vendor.qti.hardware.camera.device@1.0_vendor
-
 # Neural Networks
 PRODUCT_PACKAGES += \
     android.hardware.neuralnetworks@1.0-service-hvx
+
+# LiveDisplay native
+ PRODUCT_PACKAGES += \
+    vendor.lineage.livedisplay@1.0-service-sdm
