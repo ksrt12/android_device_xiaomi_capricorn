@@ -174,7 +174,7 @@ PRODUCT_PACKAGES += \
 
 # Default permissions
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/privapp-permissions-gemini.xml:system/etc/permissions/privapp-permissions-gemini.xml
+    $(LOCAL_PATH)/privapp-permissions-capricorn.xml:system/etc/permissions/privapp-permissions-capricorn.xml
 
 # Display
 PRODUCT_PACKAGES += \
