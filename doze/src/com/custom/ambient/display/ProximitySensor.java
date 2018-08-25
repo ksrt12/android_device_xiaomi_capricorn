@@ -40,7 +40,6 @@ public class ProximitySensor implements SensorEventListener {
     private SensorManager mSensorManager;
     private Sensor mSensor;
     private Context mContext;
-    private ExecutorService mExecutorService;
 
     private boolean mSawNear = false;
     private long mInPocketTime = 0;
@@ -71,9 +70,6 @@ public class ProximitySensor implements SensorEventListener {
         mSawNear = isNear;
     }
 
-    private Future<?> submit(Runnable runnable) {
-        return mExecutorService.submit(runnable);
-    }
 
     private boolean shouldPulse(long timestamp) {
         long delta = timestamp - mInPocketTime;
