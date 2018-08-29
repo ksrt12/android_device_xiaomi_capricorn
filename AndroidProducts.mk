@@ -12,4 +12,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_capricorn.mk
+    $(LOCAL_DIR)/syberia_capricorn.mk 

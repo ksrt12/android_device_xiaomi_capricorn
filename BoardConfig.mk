@@ -18,6 +18,7 @@
 BOARD_VENDOR := xiaomi
 
 VENDOR_PATH  := device/xiaomi/capricorn
+ANDROID_TOP := $(shell pwd)
 
 # Architecture
 TARGET_ARCH := arm64
@@ -59,8 +60,8 @@ TARGET_KERNEL_SOURCE := kernel/xiaomi/msm8996
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_KERNEL_CLANG_VERSION := 8.0
-TARGET_KERNEL_CLANG_PATH := $(ANDROID_BUILD_TOP)/prebuilts/clang/host/$(HOST_OS)-x86/$(TARGET_KERNEL_CLANG_VERSION)/bin
-KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-8.x/bin
+#KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-8.x/bin
+TARGET_KERNEL_CLANG_PATH := $(ANDROID_TOP)/prebuilts/clang/host/$(HOST_OS)-x86/$(TARGET_KERNEL_CLANG_VERSION)/bin
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8996
@@ -68,7 +69,6 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno530
 
 # Properties
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
-TARGET_VENDOR_PROP += $(VENDOR_PATH)/vendor.prop
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "qualcomm-hidl"
@@ -156,10 +156,6 @@ TARGET_PROVIDES_LIBLIGHT := true
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true
 
-# NFC
-BOARD_NFC_HAL_SUFFIX := $(TARGET_BOARD_PLATFORM)
-NXP_CHIP_TYPE := 2
-
 # GPS
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm8996
 BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
@@ -207,11 +203,11 @@ TARGET_RELEASETOOLS_EXTENSIONS := $(VENDOR_PATH)
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 
 # RIL
-TARGET_RIL_VARIANT := caf
+#TARGET_RIL_VARIANT := caf
 
 # SELinux
-BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy
-include device/qcom/sepolicy/sepolicy.mk
+#BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy
+#include device/qcom/sepolicy/sepolicy.mk
 
 # Vendor init
 TARGET_INIT_VENDOR_LIB := libinit_gemini
@@ -220,9 +216,13 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_gemini
 # WebView Beta
 PREBUILT_WEBVIEW_VERSION := chromium
 
+#DEX
+DONT_DEXPREOPT_PREBUILTS := true
+
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
 BOARD_HAS_QCOM_WLAN_SDK := true
+BOARD_USES_AOSP_WLAN_HAL := true
 BOARD_WLAN_DEVICE := qcwcn
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
