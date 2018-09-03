@@ -82,7 +82,6 @@ public class ButtonSettingsActivity extends PreferenceActivity implements OnPref
             Boolean value = (Boolean) newValue;
             FileUtils.writeLine(node, value ? "1" : "0");
             if (Constants.FP_WAKEUP_KEY.equals(preference.getKey())) {
-                value &= prefs.getBoolean(Constants.FP_POCKETMODE_KEY, false);
                 Utils.broadcastCustIntent(this, value);
             }
             return true;

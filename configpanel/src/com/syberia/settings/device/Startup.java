@@ -77,7 +77,6 @@ public class Startup extends BroadcastReceiver {
                 Utils.broadcastCustIntent(context, shouldEnablePocketMode);
             }
 
-            context.startServiceAsUser(new Intent(context, PocketModeService.class), UserHandle.CURRENT);
         }
     }
 
