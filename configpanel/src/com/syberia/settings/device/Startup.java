@@ -73,8 +73,7 @@ public class Startup extends BroadcastReceiver {
 
                 // Send initial broadcasts
                 final boolean shouldEnablePocketMode =
-                        prefs.getBoolean(Constants.FP_WAKEUP_KEY, false) &&
-                        prefs.getBoolean(Constants.FP_POCKETMODE_KEY, false);
+                        prefs.getBoolean(Constants.FP_WAKEUP_KEY, false);
                 Utils.broadcastCustIntent(context, shouldEnablePocketMode);
             }
 

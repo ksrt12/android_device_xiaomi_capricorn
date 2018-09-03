@@ -192,7 +192,6 @@ PRODUCT_COPY_FILES += \
 #PRODUCT_PACKAGES += \
 #    XiaomiDoze
 
-
 # For config.fs
 PRODUCT_PACKAGES += \
     fs_config_files
