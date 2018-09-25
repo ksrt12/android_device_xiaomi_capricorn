@@ -108,9 +108,8 @@ PRODUCT_PACKAGES += \
 
 # Health
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.0-impl \
-    android.hardware.health@2.0-service \
-    libhealthd.msm
+    android.hardware.health@2.0-service.gemini
+
 
 # Vibrator HIDL
 PRODUCT_PACKAGES += \
