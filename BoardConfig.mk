@@ -43,13 +43,16 @@ TARGET_OTA_ASSERT_DEVICE := capricorn
 TARGET_BOOTLOADER_BOARD_NAME := msm8996
 TARGET_NO_BOOTLOADER := true
 
+#SDClang
+TARGET_USE_SDCLANG := true
+
 # HIDL
 DEVICE_MANIFEST_FILE := $(VENDOR_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(VENDOR_PATH)/compatibility_matrix.xml
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom ehci-hcd.park=3 cma=32M@0-0xffffffff androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom ehci-hcd.park=3 cma=32M@0-0xffffffff
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
@@ -132,14 +135,13 @@ TARGET_USES_HWC2 := true
 TARGET_USES_ION := true
 TARGET_USES_NEW_ION_API :=true
 TARGET_USES_OVERLAY := true
-USE_OPENGL_RENDERER := true
 TARGET_USE_SDCLANG := true 
 
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 
-SF_VSYNC_EVENT_PHASE_OFFSET_NS := 6000000
-VSYNC_EVENT_PHASE_OFFSET_NS := 2000000
+#Enable DRM plugins 64 bit compilation
+TARGET_ENABLE_MEDIADRM_64 := true
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
@@ -162,6 +164,10 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm8996
 BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
 TARGET_NO_RPC := true
 USE_DEVICE_SPECIFIC_GPS := true
+
+# NFC
+BOARD_NFC_CHIPSET := pn548
+TARGET_USES_NQ_NFC := true
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
@@ -203,10 +209,9 @@ TARGET_RELEASETOOLS_EXTENSIONS := $(VENDOR_PATH)
 # Render
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 
-
 # SELinux
-#BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy
-#include device/qcom/sepolicy/sepolicy.mk
+BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy
+include device/qcom/sepolicy/sepolicy.mk
 
 # Vendor init
 TARGET_INIT_VENDOR_LIB := libinit_gemini

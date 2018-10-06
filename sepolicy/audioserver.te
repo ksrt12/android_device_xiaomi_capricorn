@@ -1,3 +1,5 @@
-allow audioserver persist_file:dir search;
+# Allow audioserver to create socket files for audio arbitration
+allow audioserver audio_data_file:sock_file { create setattr unlink };
+allow audioserver audio_data_file:dir remove_name;
 
 r_dir_file(audioserver, persist_usf_cal_file)

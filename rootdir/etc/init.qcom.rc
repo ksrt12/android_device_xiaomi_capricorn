@@ -48,8 +48,6 @@ on init
     # Set permissions for persist partition
     mkdir /persist 0771 root system
 
-    symlink /sdcard /storage/sdcard0
-
     # Create cgroup mount point for memory
     mkdir /sys/fs/cgroup/memory/bg 0750 root system
     write /sys/fs/cgroup/memory/bg/memory.swappiness 140
@@ -176,6 +174,9 @@ on post-fs-data
 
     # Create directory for radio
     mkdir /data/vendor/radio 0770 system radio
+
+    # Create directory for modem_config
+    mkdir /data/vendor/modem_config 0570 radio root
 
     # Create directories for Location services
     mkdir /data/vendor/location 0770 gps gps
@@ -540,6 +541,17 @@ service qcom-sh /vendor/bin/init.qcom.sh
     user root
     oneshot
 
+service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /vendor/etc/msm_irqbalance.conf
+    socket msm_irqbalance seqpacket 660 root system
+    class core
+    user root
+    group root
+    writepid /dev/cpuset/system-background/tasks
+
+
+on property:ro.vendor.ril.mbn_copy_completed=1
+    write /data/vendor/radio/copy_complete 1
+
 service panel-sh /vendor/bin/init.panel.sh
     class core
     user root
@@ -613,7 +625,7 @@ service thermal-engine /vendor/bin/thermal-engine -c ${sys.qcom.thermalcfg:-/ven
     socket thermal-recv-client stream 0660 system system
     socket thermal-recv-passive-client stream 0666 system system
     socket thermal-send-rule stream 0660 system system
-    group root
+    group system root
     writepid /dev/cpuset/system-background/tasks
 
 service adsprpcd /vendor/bin/adsprpcd
@@ -621,40 +633,39 @@ service adsprpcd /vendor/bin/adsprpcd
     user media
     group media
 
-service imsqmidaemon /vendor/bin/imsqmidaemon
+## imsdatadaemon starts with root and UID will be downgraded to SYSTEM.
+service vendor.imsqmidaemon /system/vendor/bin/imsqmidaemon
     class main
     user system
     socket ims_qmid stream 0660 system radio
-    group radio log oem_2950
+    group radio log diag
     writepid /dev/cpuset/system-background/tasks
 
-service imsdatadaemon /vendor/bin/imsdatadaemon
+# imsdatadaemon starts with root and UID will be downgraded to SYSTEM.
+service vendor.imsdatadaemon /system/vendor/bin/imsdatadaemon
     class main
     user system
     socket ims_datad stream 0660 system radio
-    group system wifi radio inet log oem_2950
+    group system wifi radio inet log diag
     writepid /dev/cpuset/system-background/tasks
     disabled
 
 on property:vendor.ims.QMI_DAEMON_STATUS=1
-    start imsdatadaemon
+    start vendor.imsdatadaemon
 
-service ims_rtp_daemon /vendor/bin/ims_rtp_daemon
+service vendor.ims_rtp_daemon /vendor/bin/ims_rtp_daemon
     class main
     user system
     group radio diag inet log
-    disabled
 
 service vendor.imsrcsservice /vendor/bin/imsrcsd
     class main
     user system
     group radio diag inet log
     writepid /dev/cpuset/system-background/tasks
-    disabled
 
 on property:vendor.ims.DATA_DAEMON_STATUS=1
-    start ims_rtp_daemon
-    start vendor.imsrcsservice
+    restart vendor.ims_rtp_daemon
 
 service ppd /vendor/bin/mm-pp-dpps
     class hal

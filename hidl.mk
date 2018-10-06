@@ -16,13 +16,17 @@
 
 # Audio HIDL
 PRODUCT_PACKAGES += \
-    android.hardware.audio@2.0-impl \
     android.hardware.audio@2.0-service \
+    android.hardware.audio@2.0-impl \
     android.hardware.audio.effect@2.0-impl \
-    android.hardware.audio.effect@2.0-service \
     android.hardware.soundtrigger@2.0-impl \
     android.hardware.soundtrigger@2.0-service
-
+    android.hardware.audio@4.0 \
+    android.hardware.audio.common@4.0 \
+    android.hardware.audio.common@4.0-util \
+    android.hardware.audio@4.0-impl \
+    android.hardware.audio.effect@4.0 \
+    android.hardware.audio.effect@4.0-impl
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -44,7 +48,8 @@ PRODUCT_PACKAGES += \
 # DRM HIDL
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
-    android.hardware.drm@1.0-service
+    android.hardware.drm@1.0-service \
+    android.hardware.drm@1.1-service.clearkey
 
 # Fingerprint HIDL
 PRODUCT_PACKAGES += \
@@ -79,7 +84,8 @@ PRODUCT_PACKAGES += \
 
 # NFC HIDL
 PRODUCT_PACKAGES += \
-    android.hardware.nfc@1.1-service
+    android.hardware.nfc@1.0-impl \
+    vendor.nxp.hardware.nfc@1.1-service
 
 # Power HIDL
 PRODUCT_PACKAGES += \

@@ -9,9 +9,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
     af.fast_track_multiplier=1 \
+    ro.af.client_heap_size_kbyte=7168 \
     audio.deep_buffer.media=true \
-    audio.offload.min.duration.secs=15 \
+    audio.offload.min.duration.secs=30 \
     audio.offload.video=true \
+    audio.deep_buffer.media=true \
     persist.vendor.audio.fluence.speaker=true \
     persist.vendor.audio.fluence.voicecall=true \
     persist.vendor.audio.fluence.voicerec=false \
@@ -74,6 +76,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qcom.ad.calib.data=/system/etc/calib.cfg \
     ro.qcom.ad.sensortype=2
 
+# DPM
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.vendor.dpm.feature=5
+
 # DRM
 PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=true
@@ -123,6 +129,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     sdm.debug.disable_skip_validate=1 \
     sdm.perf_hint_window=50
 
+#property to specify the number of frames to skip before setting hint
+PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.gralloc.enable_fb_ubwc=1 \
+    vendor.gralloc.disable_wb_ubwc=1 \
+    vendor.display.disable_skip_validate=1 \
+    vendor.display.perf_hint_window=50 \
+    vendor.display.enable_default_color_mode=1
+
+# Property to enable display default color mode
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.display.cabl=2
+
 # IMS
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.dbg.volte_avail_ovr=1 \
@@ -135,21 +153,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # NFC
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hardware.nfc_nci=nqx.default \
     ro.nfc.port=I2C \
     persist.nfc.smartcard.config=SIM1,SIM2,eSE1
     
-# NITZ
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.rild.nitz_plmn="" \
-    persist.rild.nitz_long_ons_0="" \
-    persist.rild.nitz_long_ons_1="" \
-    persist.rild.nitz_long_ons_2="" \
-    persist.rild.nitz_long_ons_3="" \
-    persist.rild.nitz_short_ons_0="" \
-    persist.rild.nitz_short_ons_1="" \
-    persist.rild.nitz_short_ons_2="" \
-    persist.rild.nitz_short_ons_3=""
-
 # Perf
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
@@ -166,6 +173,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
     DEVICE_PROVISIONED=1 \
+    persist.radio.VT_ENABLE=1 \
     rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
     ril.subscription.types=NV,RUIM \
     ro.telephony.call_ring.multiple=false \
@@ -177,10 +185,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.force_on_dc=true \
     persist.radio.multisim.config=dsds \
     persist.radio.redir_party_num=1 \
+    persist.radio.data_ltd_sys_ind=1 \
+    persist.radio.csvt.enabled=false \
     persist.radio.add_power_save=1 \
     persist.radio.aosp_usr_pref_sel=true \
     persist.vendor.radio.custom_ecc=1 \
+    persist.vendor.radio.cs_srv_type=1 \
+    persist.vendor.radio.redir_party_num=1 \
     persist.vendor.radio.rat_on=combine \
+    persist.vendor.radio.facnotsup_as_nonw=1 \
+    persist.vendor.radio.force_on_dc=true \
+    persist.vendor.radio.ignore_dom_time=5 \
+    telephony.lteOnCdmaDevice=1 \
     persist.vendor.radio.sib16_support=1
 
 # RmNet Data
@@ -196,7 +212,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.df.dev_name=rmnet_usb0
     
 # Tethering
-net.tethering.noprovisioning=true
+PRODUCT_PROPERTY_OVERRIDES += \
+    net.tethering.noprovisioning=true
 
 # TimeService
 PRODUCT_PROPERTY_OVERRIDES += \
