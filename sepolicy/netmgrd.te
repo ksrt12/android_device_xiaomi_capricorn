@@ -5,6 +5,8 @@ allow hal_camera_default perfd_data_file:sock_file write;
 
 #============= hal_nfc_default ==============
 #allow hal_nfc_default default_android_hwservice:hwservice_manager find;
+
+#allow cnd object_r:hwservice_manager add;
 allow hal_nfc_default nfc_vendor_data_file:dir search;
 
 #============= init ==============
