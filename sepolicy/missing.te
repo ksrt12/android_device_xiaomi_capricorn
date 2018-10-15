@@ -82,7 +82,6 @@ allow vdc self:capability sys_admin;
 #============= vendor_init ==============
 allow vendor_init perfd_data_file:file unlink;
 allow vendor_init proc_dirty_ratio:file write;
-allow vendor_init qfp-daemon_data_file:dir create;
 allow vendor_init rootfs:dir write;
 allow vendor_init tmpfs:dir write;
 
