@@ -74,7 +74,9 @@ allow time_daemon sysfs:file read;
 allow untrusted_app_25 app_data_file:dir search;
 
 #fortnite udp
-allow untrusted_app_25 self:udp_socket ioctl;
+allow untrusted_app_25 self:udp_socket { ioctl read write create getattr setattr lock relabelfrom relabelto append bind
+connect listen accept getopt setopt shutdown recvfrom sendto recv_msg send_msg
+name_bind };
 
 #============= untrusted_app_27 ==============
 allow untrusted_app_27 self:unix_stream_socket connectto;
