@@ -73,8 +73,11 @@ allow time_daemon sysfs:file read;
 #============= untrusted_app_25 ==============
 allow untrusted_app_25 app_data_file:dir search;
 
+#fortnite udp
+allow untrusted_app_25 self:udp_socket ioctl;
+
 #============= untrusted_app_27 ==============
-allow untrusted_app_27 untrusted_app_25:unix_stream_socket connectto;
+allow untrusted_app_27 self:unix_stream_socket connectto;
 
 #============= vdc ==============
 allow vdc self:capability sys_admin;
