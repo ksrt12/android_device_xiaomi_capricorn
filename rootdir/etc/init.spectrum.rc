@@ -33,11 +33,11 @@ on property:persist.spectrum.profile=0
     write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor msm-adreno-tz
     write /sys/block/dm-0/queue/read_ahead_kb 128
-    write /sys/block/sda/queue/read_ahead_kb 128
+    write /sys/block/sda/queue/read_ahead_kb 512
     write /sys/block/sde/queue/read_ahead_kb 128
-    write /sys/block/dm-0/queue/scheduler cfq
-    write /sys/block/sda/queue/scheduler cfq
-    write /sys/block/sde/queue/scheduler cfq
+    write /sys/block/dm-0/queue/scheduler maple
+    write /sys/block/sda/queue/scheduler maple
+    write /sys/block/sde/queue/scheduler maple
     write /sys/module/workqueue/parameters/power_efficient Y
 
 # Performance 

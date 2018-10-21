@@ -75,7 +75,7 @@ allow untrusted_app_25 app_data_file:dir search;
 
 #fortnite udp
 allow untrusted_app_25 self:udp_socket { ioctl read write create getattr setattr lock relabelfrom relabelto append bind
-connect listen accept getopt setopt shutdown recvfrom sendto recv_msg send_msg
+connect listen accept getopt setopt shutdown recvfrom sendto
 name_bind };
 
 #============= untrusted_app_27 ==============
