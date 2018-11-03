@@ -93,9 +93,9 @@ on property:persist.spectrum.profile=2
     write /sys/block/dm-0/queue/read_ahead_kb 256
     write /sys/block/sda/queue/read_ahead_kb 256
     write /sys/block/sde/queue/read_ahead_kb 256
-    write /sys/block/dm-0/queue/scheduler noop
-    write /sys/block/sda/queue/scheduler noop
-    write /sys/block/sde/queue/scheduler noop
+    write /sys/block/dm-0/queue/scheduler row
+    write /sys/block/sda/queue/scheduler row
+    write /sys/block/sde/queue/scheduler row
     write /sys/module/workqueue/parameters/power_efficient Y
 
 
