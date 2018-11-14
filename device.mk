@@ -130,7 +130,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     camera.msm8996 \
     libmm-qcamera \
-#    Snap
+    Snap
 
 # Device config scripts
 PRODUCT_PACKAGES += \
