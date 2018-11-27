@@ -368,6 +368,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_BOOT_JARS += \
     WfdCommon
 
+#QTI performance
+PRODUCT_BOOT_JARS += \
+    QPerformance \
+    UxPerformance
+
 # HIDL
 $(call inherit-product, $(LOCAL_PATH)/hidl.mk)
 
