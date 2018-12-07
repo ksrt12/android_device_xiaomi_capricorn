@@ -44,7 +44,7 @@ on early-init
 
 on init
 
-
+    mkdir /persist 0771 root system
     # Create cgroup mount point for memory
     mkdir /sys/fs/cgroup/memory/bg 0750 root system
     write /sys/fs/cgroup/memory/bg/memory.swappiness 140
@@ -163,6 +163,12 @@ on post-fs-data
     mkdir /data/misc/stargate/bg_estimation 0770 system system
     mkdir /data/misc/stargate/calib_test 0770 system system
     mkdir /data/misc/stargate/database 0770 system system
+    
+    mkdir /data/vendor/misc/stargate 0770 system system
+    mkdir /data/vendor/misc/stargate/bg_estimation 0770 system system
+    mkdir /data/vendor/misc/stargate/calib_test 0770 system system
+    mkdir /data/vendor/misc/stargate/database 0770 system system
+
 
     # Create directory for tftp
     mkdir /data/vendor/tombstones 0771 system system
@@ -215,8 +221,20 @@ on post-fs-data
 
     # for android.hardware.health@2.0-service.gemini cycle count backup
     mkdir /mnt/vendor/persist/battery 0700 system system
-
+    mkdir /persist/battery 0700 system system
     # SSC/SLPI sensors
+    mkdir /persist/sensors
+    chown root system /persist/sensors
+    chmod 0775 /persist/sensors
+    chown root system /persist/sensors/sensors_settings
+    chmod 0664 /persist/sensors/sensors_settings
+    chown root system /persist/sensors/sns.reg
+    chmod 0664 /persist/sensors/sns.reg
+    chown root system /persist/PRSensorData.txt
+    chmod 0660 /persist/PRSensorData.txt
+    chown root system /persist/PSensor3cm_ct.txt
+    chmod 0660 /persist/PSensor3cm_ct.txt
+
     mkdir /mnt/vendor/persist/sensors
     chown root system /mnt/vendor/persist/sensors
     chmod 0775 /mnt/vendor/persist/sensors
@@ -389,6 +407,16 @@ on boot
     chmod 2770 /dev/socket/qmux_bluetooth
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
+    
+
+    mkdir /persist/drm 0770 system system
+    mkdir /persist/misc 0770 system system
+    mkdir /persist/alarm 0770 system system
+    mkdir /persist/data/sfs 0700 system system
+    mkdir /persist/data/tz 0700 system system
+    mkdir /persist/qc_senseid 0700 system system
+    mkdir /persist/wlan_bt 0770 system system
+    mkdir /persist/audio 0777 media audio
 
     mkdir /mnt/vendor/persist/drm 0770 system system
     mkdir /mnt/vendor/persist/misc 0770 system system
