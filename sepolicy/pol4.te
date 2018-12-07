@@ -1,99 +1,30 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #============= atfwd ==============
 #============= cnd ==============
-#============= fsck ==============
 #============= fsck ==============
 #============= hal_dpmQmiMgr ==============
 #============= hal_gnss_qti ==============
 #============= hal_health_default ==============
-#============= hal_health_default ==============
-#============= hal_rcsservice ==============
 #============= hal_rcsservice ==============
 #============= hal_sensors_default ==============
-#============= hal_sensors_default ==============
 #============= ims ==============
-#============= ims ==============
-#============= init ==============
 #============= init ==============
 #============= init_panel ==============
 #============= irsc_util ==============
-#============= irsc_util ==============
 #============= isolated_app ==============
 #============= kernel ==============
-#============= kernel ==============
 #============= location ==============
-#============= location ==============
-#============= mediacodec ==============
 #============= mediacodec ==============
 #============= mm-qcamerad ==============
 #============= netmgrd ==============
 #============= netutils_wrapper ==============
-#============= netutils_wrapper ==============
 #============= perfd ==============
-#============= priv_app ==============
 #============= priv_app ==============
 #============= qfp-daemon ==============
 #============= qti ==============
 #============= qti_init_shell ==============
 #============= rfs_access ==============
-#============= rfs_access ==============
 #============= rild ==============
-#============= sensors ==============
 #============= sensors ==============
 #============= sysinit ==============
 #============= system_app ==============
@@ -102,10 +33,8 @@
 #============= time_daemon ==============
 #============= toolbox ==============
 #============= untrusted_app ==============
-#============= untrusted_app ==============
 #============= untrusted_app_25 ==============
 #============= untrusted_app_27 ==============
-#============= vendor_init ==============
 #============= vendor_init ==============
 #============= webview_zygote ==============
 allow atfwd sysfs:file read;
@@ -119,19 +48,15 @@ allow hal_rcsservice system_prop:property_service set;
 allow hal_sensors_default mnt_vendor_file:file { getattr open read };
 allow hal_sensors_default system_prop:property_service set;
 allow ims sysfs:file open;
-allow ims sysfs:file open;
 allow ims system_prop:property_service set;
-allow init su:process noatsecure;
 allow init su:process noatsecure;
 allow init sysfs_dm:file write;
 allow init_panel self:capability sys_admin;
-allow irsc_util self:capability sys_admin;
 allow irsc_util self:capability sys_admin;
 allow isolated_app app_data_file:dir getattr;
 allow location sysfs:file { open read };
 allow location system_prop:property_service set;
 allow location wcnss_prop:file read;
-allow mediacodec perfd:unix_stream_socket connectto;
 allow mediacodec perfd:unix_stream_socket connectto;
 allow mm-qcamerad mnt_vendor_file:file { open read };
 allow netmgrd system_prop:property_service set;
@@ -181,7 +106,5 @@ allow untrusted_app_27 sysfs_batteryinfo:dir search;
 allow untrusted_app_27 sysfs_net:dir search;
 allow untrusted_app_27 vold_exec:file { open read };
 allow vendor_init proc_dirty:file write;
-allow vendor_init proc_dirty:file write;
-allow vendor_init tmpfs:dir create;
 allow vendor_init tmpfs:dir create;
 allow webview_zygote zygote:unix_dgram_socket write;
