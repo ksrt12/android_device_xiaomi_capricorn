@@ -37,7 +37,7 @@ allow rfs_access mnt_vendor_file:file { open read };
 allow rfs_access mnt_vendor_file:file { read unlink };
 allow rild system_prop:property_service set;
 allow sensors mnt_vendor_file:file getattr;
-allow sensors mnt_vendor_file:file { read write };
+allow sensors mnt_vendor_file:file { open read write };
 allow sensors property_socket:sock_file write;
 allow sensors sysfs:file read;
 allow system_app proc_pagetypeinfo:file { getattr open read };
