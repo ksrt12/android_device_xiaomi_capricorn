@@ -1,4 +1,5 @@
 allow atfwd sysfs:file read;
+#allow qfp-daemon storage_file:dir { open read write search getattr };
 allow cnd system_prop:property_service set;
 allow hal_dpmQmiMgr sysfs:file { open read };
 allow hal_gnss_qti property_socket:sock_file write;
@@ -26,11 +27,6 @@ allow priv_app proc:file { getattr open };
 allow priv_app proc_modules:file { getattr open };
 allow priv_app sysfs:file read;
 allow priv_app sysfs:file { open read };
-allow qfp-daemon media_rw_data_file:dir { open read search };
-allow qfp-daemon mnt_user_file:dir search;
-allow qfp-daemon mnt_user_file:lnk_file read;
-allow qfp-daemon sdcardfs:dir search;
-allow qfp-daemon storage_file:lnk_file read;
 allow qti sysfs:file { open read };
 allow qti_init_shell vendor_radio_data_file:dir search;
 allow rfs_access mnt_vendor_file:file { open read };
