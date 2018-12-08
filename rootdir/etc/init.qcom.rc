@@ -44,7 +44,7 @@ on early-init
 
 on init
 
-    #mkdir /persist 0771 root system
+    mkdir /persist 0771 root system
     # Create cgroup mount point for memory
     mkdir /sys/fs/cgroup/memory/bg 0750 root system
     write /sys/fs/cgroup/memory/bg/memory.swappiness 140
@@ -224,27 +224,27 @@ on post-fs-data
     mkdir /persist/battery 0700 system system
     # SSC/SLPI sensors
     mkdir /persist/sensors
-    chown system system /persist/sensors
+    chown root system /persist/sensors
     chmod 0775 /persist/sensors
-    chown system system /persist/sensors/sensors_settings
+    chown root system /persist/sensors/sensors_settings
     chmod 0664 /persist/sensors/sensors_settings
-    chown system system /persist/sensors/sns.reg
+    chown root system /persist/sensors/sns.reg
     chmod 0664 /persist/sensors/sns.reg
-    chown system system /persist/PRSensorData.txt
+    chown root system /persist/PRSensorData.txt
     chmod 0660 /persist/PRSensorData.txt
-    chown system system /persist/PSensor3cm_ct.txt
+    chown root system /persist/PSensor3cm_ct.txt
     chmod 0660 /persist/PSensor3cm_ct.txt
 
     mkdir /mnt/vendor/persist/sensors
     chown root system /mnt/vendor/persist/sensors
     chmod 0775 /mnt/vendor/persist/sensors
-    chown system system /mnt/vendor/persist/sensors/sensors_settings
+    chown root system /mnt/vendor/persist/sensors/sensors_settings
     chmod 0664 /mnt/vendor/persist/sensors/sensors_settings
-    chown system system /mnt/vendor/persist/sensors/sns.reg
+    chown root system /mnt/vendor/persist/sensors/sns.reg
     chmod 0664 /mnt/vendor/persist/sensors/sns.reg
-    chown system system /mnt/vendor/persist/PRSensorData.txt
+    chown root system /mnt/vendor/persist/PRSensorData.txt
     chmod 0660 /mnt/vendor/persist/PRSensorData.txt
-    chown system system /mnt/vendor/persist/PSensor3cm_ct.txt
+    chown root system /mnt/vendor/persist/PSensor3cm_ct.txt
     chmod 0660 /mnt/vendor/persist/PSensor3cm_ct.txt
 
     # /dev/sensors only supports an ioctl to get the current SLPI timestamp;
