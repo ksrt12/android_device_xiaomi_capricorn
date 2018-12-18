@@ -28,3 +28,4 @@ allow qfp-daemon sensors_persist_file:dir search;
 #============= vold_prepare_subdirs ==============
 allow vold_prepare_subdirs self:capability sys_admin;
 
+set_prop(netmgrd, system_prop);
