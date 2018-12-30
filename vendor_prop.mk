@@ -210,7 +210,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.sib16_support=1
 
 # RmNet Data
-PRODUCT_PROPERTY_OVERRIDES += \
+#not used
+#PRODUCT_PROPERTY_OVERRIDES += \
     persist.rmnet.data.enable=true \
     persist.data.wda.enable=true \
     persist.data.df.dl_mode=5 \
