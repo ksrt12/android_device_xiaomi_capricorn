@@ -163,12 +163,6 @@ on post-fs-data
     mkdir /data/misc/stargate/bg_estimation 0770 system system
     mkdir /data/misc/stargate/calib_test 0770 system system
     mkdir /data/misc/stargate/database 0770 system system
-    
-    mkdir /data/vendor/misc/stargate 0770 system system
-    mkdir /data/vendor/misc/stargate/bg_estimation 0770 system system
-    mkdir /data/vendor/misc/stargate/calib_test 0770 system system
-    mkdir /data/vendor/misc/stargate/database 0770 system system
-
 
     # Create directory for tftp
     mkdir /data/vendor/tombstones 0771 system system
@@ -224,27 +218,27 @@ on post-fs-data
 
     # SSC/SLPI sensors
     mkdir /persist/sensors
-    chown system system /persist/sensors
+    chown root system /persist/sensors
     chmod 0775 /persist/sensors
-    chown system system /persist/sensors/sensors_settings
+    chown root system /persist/sensors/sensors_settings
     chmod 0664 /persist/sensors/sensors_settings
-    chown system system /persist/sensors/sns.reg
+    chown root system /persist/sensors/sns.reg
     chmod 0664 /persist/sensors/sns.reg
-    chown system system /persist/PRSensorData.txt
+    chown root system /persist/PRSensorData.txt
     chmod 0660 /persist/PRSensorData.txt
-    chown system system /persist/PSensor3cm_ct.txt
+    chown root system /persist/PSensor3cm_ct.txt
     chmod 0660 /persist/PSensor3cm_ct.txt
 
     mkdir /mnt/vendor/persist/sensors
     chown root system /mnt/vendor/persist/sensors
     chmod 0775 /mnt/vendor/persist/sensors
-    chown system system /mnt/vendor/persist/sensors/sensors_settings
+    chown root system /mnt/vendor/persist/sensors/sensors_settings
     chmod 0664 /mnt/vendor/persist/sensors/sensors_settings
-    chown system system /mnt/vendor/persist/sensors/sns.reg
+    chown root system /mnt/vendor/persist/sensors/sns.reg
     chmod 0664 /mnt/vendor/persist/sensors/sns.reg
-    chown system system /mnt/vendor/persist/PRSensorData.txt
+    chown root system /mnt/vendor/persist/PRSensorData.txt
     chmod 0660 /mnt/vendor/persist/PRSensorData.txt
-    chown system system /mnt/vendor/persist/PSensor3cm_ct.txt
+    chown root system /mnt/vendor/persist/PSensor3cm_ct.txt
     chmod 0660 /mnt/vendor/persist/PSensor3cm_ct.txt
 
     # /dev/sensors only supports an ioctl to get the current SLPI timestamp;
@@ -265,7 +259,7 @@ on post-fs-data
     # Create related dirs
     mkdir /data/system/perfd 0770 root system
     chmod 2770 /data/system/perfd
-   
+
     # Create /data/vendor/time folder for time-services
     mkdir /data/vendor/time/ 0700 system system
 
@@ -400,16 +394,7 @@ on boot
     chmod 2770 /dev/socket/qmux_bluetooth
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
-    
 
-    mkdir /persist/drm 0770 system system
-    mkdir /persist/misc 0770 system system
-    mkdir /persist/alarm 0770 system system
-    mkdir /persist/data/sfs 0700 system system
-    mkdir /persist/data/tz 0700 system system
-    mkdir /persist/qc_senseid 0700 system system
-    mkdir /persist/wlan_bt 0770 system system
-    mkdir /persist/audio 0777 media audio
 
     mkdir /persist/drm 0770 system system
     mkdir /persist/misc 0770 system system
@@ -468,7 +453,7 @@ on boot
     setprop ro.boot.wificountrycode VE
 
 on property:sys.boot_completed=1
-   
+
     # Enable UFS powersaving
     write /sys/devices/soc/624000.ufshc/clkscale_enable 1
     write /sys/devices/soc/624000.ufshc/clkgate_enable 1
@@ -487,7 +472,7 @@ on property:sys.boot_completed=1
     write /sys/block/dm-0/queue/read_ahead_kb 128
     write /sys/block/dm-1/queue/read_ahead_kb 128
     write /sys/block/sda/queue/iostats 1
-    
+
      # UFS health
     chmod 755 /sys/kernel/debug/ufshcd0
     chmod 644 /sys/kernel/debug/ufshcd0/err_state
@@ -499,13 +484,13 @@ on property:sys.boot_completed=1
     chmod 644 /sys/kernel/debug/ufshcd0/stats/req_stats
     chmod 644 /sys/kernel/debug/ufshcd0/stats/query_stats
     chmod 644 /sys/kernel/debug/ufshcd0/stats/err_stats
-    
+
     # CPE fw_name used by sound trigger HAL
     chown media audio /sys/kernel/wcd_cpe0/fw_name
-    
+
     # Enable ZRAM on boot_complete
     swapon_all /vendor/etc/fstab.qcom
-    
+
     #Start TFA calibration script
     start tfa-sh
 
