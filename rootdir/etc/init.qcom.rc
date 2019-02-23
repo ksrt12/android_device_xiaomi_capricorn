@@ -101,6 +101,8 @@ on init
     write /dev/blkio/blkio.weight 1000
     write /dev/blkio/bg/blkio.weight 100
 
+    mkdir /mnt/vendor 0771 root system
+
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
@@ -121,9 +123,8 @@ on late-fs
     mount_all /vendor/etc/fstab.qcom --late
 
     # Set permissions for persist partition
+    #mount -t ext4 -o nosuid,nodev,noatime,barrier=1 /dev/block/platform/soc/624000.ufshc/by-name/persist /mnt/vendor/persist
     restorecon_recursive /mnt/vendor/persist
-    chown root system /mnt/vendor/persist
-    chmod 0771 /mnt/vendor/persist
     mkdir /mnt/vendor/persist/bluetooth 0770 bluetooth bluetooth
     mkdir /mnt/vendor/persist/bms 0700 root system
     mkdir /mnt/vendor/persist/data 0700 system system
