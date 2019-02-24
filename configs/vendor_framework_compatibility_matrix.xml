@@ -36,7 +36,9 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </hal>
     <hal format="hidl" optional="true">
         <name>vendor.display.color</name>
-        <version>1.0-2</version>
+        <version>1.0</version>
+        <version>1.1</version>
+        <version>1.2</version>
         <interface>
              <name>IDisplayColor</name>
              <instance>default</instance>
@@ -52,7 +54,13 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </hal>
     <hal format="hidl" optional="true">
         <name>vendor.display.config</name>
-        <version>1.0-6</version>
+        <version>1.0</version>
+        <version>1.1</version>
+        <version>1.2</version>
+        <version>1.3</version>
+        <version>1.4</version>
+        <version>1.5</version>
+        <version>1.6</version>
         <interface>
              <name>IDisplayConfig</name>
              <instance>default</instance>
@@ -105,7 +113,9 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </hal>
    <hal format="hidl" optional="true">
        <name>android.hardware.radio</name>
-       <version>1.0-2</version>
+       <version>1.0</version>
+       <version>1.1</version>
+       <version>1.2</version>
        <interface>
           <name>IRadio</name>
           <instance>slot1</instance>
@@ -135,7 +145,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    </hal>
    <hal format="hidl" optional="true">
        <name>com.qualcomm.qti.imscmservice</name>
-       <version>2.0-1</version>
+       <version>2.0</version>
+       <version>2.1</version>
        <interface>
          <name>IImsCmService</name>
          <instance>qti.ims.connectionmanagerservice</instance>
@@ -164,7 +175,9 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <hal format="hidl" optional="true">
         <name>com.quicinc.cne.server</name>
         <version>1.0</version>
-        <version>2.0-2</version>
+        <version>2.0</version>
+        <version>2.1</version>
+        <version>2.2</version>
         <interface>
             <name>IServer</name>
             <instance>cnd</instance>
@@ -172,7 +185,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </hal>
     <hal format="hidl" optional="true">
         <name>com.quicinc.cne.api</name>
-        <version>1.0-1</version>
+        <version>1.0</version>
+        <version>1.1</version>
         <interface>
             <name>IApiService</name>
             <instance>cnd</instance>
@@ -191,14 +205,6 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <version>1.0</version>
         <interface>
             <name>IEsePowerManager</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl" optional="true">
-        <name>android.hardware.gnss</name>
-        <version>1.0-1</version>
-        <interface>
-            <name>IGnss</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -263,7 +269,11 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.radio.ims</name>
-           <version>1.0-4</version>
+           <version>1.0</version>
+           <version>1.1</version>
+           <version>1.2</version>
+           <version>1.3</version>
+           <version>1.4</version>
            <interface>
                <name>IImsRadio</name>
                <instance>imsradio0</instance>
@@ -300,7 +310,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.radio.qtiradio</name>
         <version>1.0</version>
-        <version>2.0-1</version>
+        <version>2.0</version>
+        <version>2.1</version>
         <interface>
             <name>IQtiRadio</name>
             <instance>slot1</instance>
@@ -360,7 +371,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.vpp</name>
-        <version>1.0-1</version>
+        <version>1.0</version>
+        <version>1.1</version>
         <interface>
             <name>IHidlVppService</name>
             <instance>vppService</instance>
@@ -409,14 +421,17 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <hal format="hidl" optional="true">
         <name>android.hardware.gnss</name>
         <version>1.0</version>
+        <version>1.1</version>
         <interface>
             <name>IGnss</name>
-            <instance>gnss_vendor</instance>
+            <instance>default</instance>
         </interface>
     </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.gnss</name>
-        <version>1.0-2</version>
+        <version>1.0</version>
+        <version>1.1</version>
+        <version>1.2</version>
         <version>2.0</version>
         <interface>
             <name>ILocHidlGnss</name>
@@ -439,14 +454,14 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>default</instance>
         </interface>
     </hal>
-   <hal format="hidl" optional="true">
-       <name>vendor.qti.ims.callinfo</name>
-       <version>1.0</version>
-       <interface>
-         <name>IService</name>
-         <instance>default</instance>
-       </interface>
-   </hal>
+    <hal format="hidl" optional="true">
+        <name>vendor.qti.ims.callinfo</name>
+        <version>1.0</version>
+        <interface>
+          <name>IService</name>
+          <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.data.factory</name>
         <version>1.0</version>
