@@ -1,5 +1,4 @@
 # Devices
-/dev/block/platform/soc/624000\.ufshc/by-name/persist    u:object_r:persist_block_device:s0
 /dev/captouch                         u:object_r:captouch_device:s0
 /dev/elliptic(.*)?                    u:object_r:sound_device:s0
 /dev/lirc[0-9]*                       u:object_r:lirc_device:s0
@@ -41,16 +40,6 @@
 
 # Data vendor files
 /data/vendor/misc/audio(/.*)?         u:object_r:vendor_audio_data_file:s0
-
-# Persist files
-/(mnt/vendor)/persist/audio/us_cal                 u:object_r:persist_usf_cal_file:s0
-/(mnt/vendor)/persist/PRSensorData\.txt            u:object_r:sensors_persist_file:s0
-/(mnt/vendor)/persist/PSensor3cm_ct\.txt           u:object_r:sensors_persist_file:s0
-/(mnt/vendor)/persist/sensors(/.*)?		   u:object_r:sensors_persist_file:s0
-/(mnt/vendor)/persist/qc_senseid(/.*)?             u:object_r:persist_qc_senseid_file:s0
-/(mnt/vendor)/persist/battery(/.*)?		   u:object_r:persist_battery_file:s0
-/(mnt/vendor)/persist(/.*)?                        u:object_r:mnt_vendor_file:s0
-
 
 # Binaries
 /(vendor|system/vendor)/bin/readfem   u:object_r:readfem_exec:s0

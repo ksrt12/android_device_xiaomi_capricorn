@@ -27,8 +27,6 @@
 
 import /vendor/etc/init/hw/init.qcom.power.rc
 import /vendor/etc/init/hw/init.qcom.usb.rc
-import /vendor/etc/init/hw/init.target.rc
-#import /vendor/etc/init/hw/init.spectrum.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
@@ -44,7 +42,10 @@ on early-init
 
 on init
 
+<<<<<<< HEAD
     #mkdir /persist 0771 root system
+=======
+>>>>>>> 79334f3d9ccdeaf9c80a530602576b535418420b
     # Create cgroup mount point for memory
     mkdir /sys/fs/cgroup/memory/bg 0750 root system
     write /sys/fs/cgroup/memory/bg/memory.swappiness 140
@@ -103,11 +104,17 @@ on init
     chmod 0664 /dev/blkio/bg/tasks
     write /dev/blkio/blkio.weight 1000
     write /dev/blkio/bg/blkio.weight 100
+<<<<<<< HEAD
+=======
+
+    mkdir /mnt/vendor 0771 root system
+>>>>>>> 79334f3d9ccdeaf9c80a530602576b535418420b
 
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
+<<<<<<< HEAD
     # Set permissions for persist partition
     chown root system /mnt/vendor/persist
     chmod 0771 /mnt/vendor/persist
@@ -121,6 +128,9 @@ on fs
     restorecon_recursive /mnt/vendor/persist
 
     mount_all /system/vendor/etc/fstab.qcom --early
+=======
+    mount_all /vendor/etc/fstab.qcom --early
+>>>>>>> 79334f3d9ccdeaf9c80a530602576b535418420b
 
     # Start HW service manager early
     start hwservicemanager
@@ -132,8 +142,24 @@ on late-fs
     start bootanim
     start configstore-hal-1-0
     start gralloc-2-0
+<<<<<<< HEAD
      # mount RW partitions which need run fsck
     mount_all /system/vendor/etc/fstab.qcom --late
+=======
+    # mount RW partitions which need run fsck
+    mount_all /vendor/etc/fstab.qcom --late
+
+    # Set permissions for persist partition
+    #mount -t ext4 -o nosuid,nodev,noatime,barrier=1 /dev/block/platform/soc/624000.ufshc/by-name/persist /mnt/vendor/persist
+    restorecon_recursive /mnt/vendor/persist
+    mkdir /mnt/vendor/persist/bluetooth 0770 bluetooth bluetooth
+    mkdir /mnt/vendor/persist/bms 0700 root system
+    mkdir /mnt/vendor/persist/data 0700 system system
+    mkdir /mnt/vendor/persist/display 0770 system graphics
+    mkdir /mnt/vendor/persist/hvdcp_opti 0770 root system
+    mkdir /mnt/vendor/persist/secnvm 0770 system system
+    mkdir /mnt/vendor/persist/time 0770 system system
+>>>>>>> 79334f3d9ccdeaf9c80a530602576b535418420b
 
     # boot time fs tune
     write /sys/block/sda/queue/iostats 0
@@ -214,6 +240,7 @@ on post-fs-data
     mkdir /dev/socket/location/xtra 0770 gps gps
 
     # for android.hardware.health@2.0-service.gemini cycle count backup
+<<<<<<< HEAD
     mkdir /persist/battery 0700 system system
 
     # SSC/SLPI sensors
@@ -228,6 +255,9 @@ on post-fs-data
     chmod 0660 /persist/PRSensorData.txt
     chown root system /persist/PSensor3cm_ct.txt
     chmod 0660 /persist/PSensor3cm_ct.txt
+=======
+    mkdir /mnt/vendor/persist/battery 0700 system system
+>>>>>>> 79334f3d9ccdeaf9c80a530602576b535418420b
 
     mkdir /mnt/vendor/persist/sensors
     chown root system /mnt/vendor/persist/sensors
@@ -259,7 +289,11 @@ on post-fs-data
     # Create related dirs
     mkdir /data/system/perfd 0770 root system
     chmod 2770 /data/system/perfd
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> 79334f3d9ccdeaf9c80a530602576b535418420b
     # Create /data/vendor/time folder for time-services
     mkdir /data/vendor/time/ 0700 system system
 
@@ -303,6 +337,30 @@ on early-boot
     # HardwareInfo needs to be able to read charge_full
     chmod 644 /sys/devices/soc/qpnp-fg-22/power_supply/bms/charge_full
 
+<<<<<<< HEAD
+=======
+    # for backward compatibility
+    chown system system /persist/sensors
+    chown system system /persist/sensors/registry
+    chown system system /persist/sensors/registry/registry
+    chown system system /persist/sensors/registry/registry/sensors_registry
+    chown system system /persist/sensors/sensors_settings
+    chown system system /persist/sensors/registry/config
+    chmod 0664 /persist/sensors/sensors_settings
+
+    chown system system /mnt/vendor/persist/sensors
+    chown system system /mnt/vendor/persist/sensors/sns.reg
+    chown system system /mnt/vendor/persist/sensors/sensors_list.txt
+    chown system system /mnt/vendor/persist/sensors/registry
+    chown system system /mnt/vendor/persist/sensors/registry/registry
+    chown system system /mnt/vendor/persist/sensors/registry/registry/sensors_registry
+    chown system system /mnt/vendor/persist/sensors/sensors_settings
+    chown system system /mnt/vendor/persist/sensors/registry/sns_reg_config
+    chown system system /mnt/vendor/persist/sensors/registry/config
+    chmod 0664 /mnt/vendor/persist/sensors/sensors_settings
+    chown root audio /sys/kernel/boot_adsp/boot
+
+>>>>>>> 79334f3d9ccdeaf9c80a530602576b535418420b
     # SSR setup
     write /sys/bus/msm_subsys/devices/subsys0/restart_level "related"
     write /sys/bus/msm_subsys/devices/subsys1/restart_level "related"
@@ -395,6 +453,7 @@ on boot
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
+<<<<<<< HEAD
 
     mkdir /persist/drm 0770 system system
     mkdir /persist/misc 0770 system system
@@ -404,6 +463,16 @@ on boot
     mkdir /persist/qc_senseid 0700 system system
     mkdir /persist/wlan_bt 0770 system system
     mkdir /persist/audio 0777 media audio
+=======
+    mkdir /mnt/vendor/persist/drm 0770 system system
+    mkdir /mnt/vendor/persist/misc 0770 system system
+    mkdir /mnt/vendor/persist/alarm 0770 system system
+    mkdir /mnt/vendor/persist/data/sfs 0700 system system
+    mkdir /mnt/vendor/persist/data/tz 0700 system system
+    mkdir /mnt/vendor/persist/qc_senseid 0700 system system
+    mkdir /mnt/vendor/persist/wlan_bt 0770 system system
+    mkdir /mnt/vendor/persist/audio 0777 media audio
+>>>>>>> 79334f3d9ccdeaf9c80a530602576b535418420b
 
     # Create NETMGR daemon socket area
     mkdir /dev/socket/netmgr 0750 radio radio
@@ -565,7 +634,11 @@ service vendor.dataqti /vendor/bin/qti
     group radio oem_2901 diag usb
     writepid /dev/cpuset/system-background/tasks
 
+<<<<<<< HEAD
 service vendor.sensors /vendor/bin/sensors.qcom
+=======
+service vendor.sensors /vendor/bin/sensors.qti
+>>>>>>> 79334f3d9ccdeaf9c80a530602576b535418420b
     class core
     user system
     group system
@@ -611,14 +684,6 @@ service qcom-sh /vendor/bin/init.qcom.sh
     user root
     group root system radio
     oneshot
-
-service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /vendor/etc/msm_irqbalance.conf
-    socket msm_irqbalance seqpacket 660 root system
-    class core
-    user root
-    group root
-    writepid /dev/cpuset/system-background/tasks
-
 
 on property:ro.vendor.ril.mbn_copy_completed=1
     write /data/vendor/radio/copy_complete 1
@@ -676,7 +741,10 @@ on property:init.svc.vendor.per_mgr=running
 
 on property:sys.shutdown.requested=*
     stop vendor.per_proxy
+<<<<<<< HEAD
     stop vendor.ims_rtp_daemon
+=======
+>>>>>>> 79334f3d9ccdeaf9c80a530602576b535418420b
 
 service readfem /vendor/bin/readfem
     class main
@@ -686,8 +754,8 @@ service readfem /vendor/bin/readfem
 
 service readmac /vendor/bin/readmac
     class main
-    user root
-    group root oem_2901
+    user system
+    group system net_raw
     oneshot
 
 service thermal-engine /vendor/bin/thermal-engine -c ${sys.qcom.thermalcfg:-/vendor/etc/thermal-engine-8996.conf}
@@ -706,7 +774,7 @@ service adsprpcd /vendor/bin/adsprpcd
     group media
 
 ## imsdatadaemon starts with root and UID will be downgraded to SYSTEM.
-service vendor.imsqmidaemon /system/vendor/bin/imsqmidaemon
+service vendor.imsqmidaemon /vendor/bin/imsqmidaemon
     class main
     user system
     socket ims_qmid stream 0660 system radio
@@ -714,7 +782,7 @@ service vendor.imsqmidaemon /system/vendor/bin/imsqmidaemon
     writepid /dev/cpuset/system-background/tasks
 
 # imsdatadaemon starts with root and UID will be downgraded to SYSTEM.
-service vendor.imsdatadaemon /system/vendor/bin/imsdatadaemon
+service vendor.imsdatadaemon /vendor/bin/imsdatadaemon
     class main
     user system
     socket ims_datad stream 0660 system radio

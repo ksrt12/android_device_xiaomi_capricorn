@@ -21,6 +21,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_m.mk)
 $(call inherit-product-if-exists, vendor/xiaomi/capricorn/capricorn-vendor.mk)
 $(call inherit-product-if-exists, vendor/xiaomi/msm8996-common/msm8996-common-vendor.mk)
 
+PERM_PATH := $(TARGET_COPY_OUT_VENDOR)/etc/permissions
+
 #Miui Apps
 #$(call inherit-product-if-exists, vendor/miui/miui-apps.mk)
 
@@ -37,6 +39,8 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
+PRODUCT_COPY_FILES += \
+    vendor/havoc/prebuilt/common/bootanimation/$(TARGET_SCREEN_WIDTH).zip:system/media/bootanimation.zip
 
 PRODUCT_GENERIC_PROPERTIES += \
     ro.sf.lcd_density=480 \
@@ -88,6 +92,14 @@ PRODUCT_COPY_FILES += \
 		frameworks/native/data/etc/android.hardware.vulkan.compute-0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.compute.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml 
 
+#Perf configs
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/perf/commonresourceconfigs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/commonresourceconfigs.xml \
+    $(LOCAL_PATH)/configs/perf/perfboostsconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perfboostsconfig.xml \
+    $(LOCAL_PATH)/configs/perf/targetconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/targetconfig.xml \
+    $(LOCAL_PATH)/configs/perf/targetresourceconfigs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/targetresourceconfigs.xml
+
+
 # Vendor properties
 -include $(LOCAL_PATH)/vendor_prop.mk
 
@@ -119,13 +131,20 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/mixer_paths_tasha.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths_tasha.xml \
     $(LOCAL_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml
 
-
 PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
     frameworks/av/services/audiopolicy/config/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml
+
+# ANT+
+PRODUCT_PACKAGES += \
+    AntHalService \
+    com.dsi.ant.antradio_library
+
+PRODUCT_COPY_FILES += \
+    external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:$(PERM_PATH)/com.dsi.ant.antradio_library.xml
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -149,11 +168,6 @@ PRODUCT_PACKAGES += \
     #init.spectrum.rc \
     init.spectrum.sh
 
-# CMHW
-PRODUCT_PACKAGES += \
-    org.cyanogenmod.hardware \
-    org.cyanogenmod.hardware.xml
-
 # CNE
 PRODUCT_PACKAGES += \
     libcnefeatureconfig
@@ -164,7 +178,7 @@ PRODUCT_PACKAGES += \
 
 # Default permissions
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/privapp-permissions-capricorn.xml:system/etc/permissions/privapp-permissions-capricorn.xml
+    $(LOCAL_PATH)/configs/privapp-permissions-capricorn.xml:system/etc/permissions/privapp-permissions-capricorn.xml
 
 # Display
 PRODUCT_PACKAGES += \
@@ -176,7 +190,7 @@ PRODUCT_PACKAGES += \
     libdisplayconfig \
     libgenlock \
     libqdMetaData.system \
-    libtinyxml
+    libnl
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/calib.cfg:system/etc/calib.cfg
@@ -243,8 +257,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml \
-    $(LOCAL_PATH)/configs/media_codecs_vendor_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_vendor_audio.xml \
-    $(LOCAL_PATH)/configs/media_codecs_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_vendor.xml \
     $(LOCAL_PATH)/configs/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml
 
 PRODUCT_COPY_FILES += \
@@ -383,15 +395,16 @@ $(call inherit-product, $(LOCAL_PATH)/hidl.mk)
 
 # HIDL manifest
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/manifest.xml:$(TARGET_COPY_OUT_VENDOR)/manifest.xml
+    $(LOCAL_PATH)/configs/manifest.xml:$(TARGET_COPY_OUT_VENDOR)/manifest.xml
 
 # TFA calibration
 PRODUCT_PACKAGES += \
     init.tfa.sh \
     tinyplay
 
-PRODUCT_PROPERTY_OVERRIDES += ro.hardware.power=gemini
-
 #Vendor's public libraries
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
+    $(LOCAL_PATH)/configs/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
+
+# Prebuilt music app and browser
+PRODUCT_PACKAGES += Phonograph KiwiBrowser

@@ -1,0 +1,6 @@
+*.bak
+*.orig
+*~
+patches/*
+changelog.sh
+Changelog.txt

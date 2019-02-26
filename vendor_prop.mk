@@ -9,11 +9,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
     af.fast_track_multiplier=1 \
-    ro.af.client_heap_size_kbyte=7168 \
     audio.deep_buffer.media=true \
-    audio.offload.min.duration.secs=30 \
+    audio.offload.min.duration.secs=15 \
     audio.offload.video=true \
-    audio.deep_buffer.media=true \
     persist.vendor.audio.fluence.speaker=true \
     persist.vendor.audio.fluence.voicecall=true \
     persist.vendor.audio.fluence.voicerec=false \
@@ -127,6 +125,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dev.pm.dyn_samplingrate=1 \
     persist.demo.hdmirotationlock=false \
     persist.hwc.enable_vds=1 \
+    persist.sys.wfd.nohdcp=1 \
+    persist.debug.wfd.enable=1 \
     persist.sys.wfd.virtual=0 \
     ro.opengles.version=196610 \
     ro.sf.lcd_density=480
@@ -169,6 +169,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
     ro.vendor.qti.sys.fw.bg_apps_limit=60
+
+# Power
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hardware.power=gemini
 
 # Priv-app permissions whitelist
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -270,4 +274,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # network location provider is not functional
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.location.osnlp.package=com.google.android.gms \
-    ro.location.osnlp.region.package= \
+    ro.location.osnlp.region.package=none
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.mod.romtags=droid=9.0.0_r33,caf=LA.UM.7.5.r1-04100-8x96.0

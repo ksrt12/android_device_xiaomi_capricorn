@@ -83,19 +83,10 @@ on charger
 
 on enable-low-power
 
-     # Disable thermal hotplug to switch governor
-    #write /sys/module/msm_thermal/core_control/enabled 0
-
-    # Set sync wakee policy tunable
-    # write /proc/sys/kernel/sched_prefer_sync_wakee_to_waker 1
-    
     # Disable sched_boost after boot complete
     write /proc/sys/kernel/sched_boost 0
-    # write /proc/sys/kernel/sched_autogroup_enabled 0
 
-    # Enable Adaptive LMK
-    # write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
-    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 80640
+    #write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 80640
 
     write /sys/devices/system/cpu/cpu0/online 1
 
@@ -112,6 +103,7 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/up_rate_limit_us 500
     write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/down_rate_limit_us 20000
     write /sys/devices/system/cpu/cpu2/cpufreq/schedutil/iowait_boost_enable 1
+<<<<<<< HEAD
 
     # configure governor settings for gold cluster
     #write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "pwrutilx"
@@ -129,6 +121,14 @@ on enable-low-power
     write /sys/module/cpu_input_boost/parameters/input_boost_freq_lp 480000
     write /sys/module/cpu_input_boost/parameters/dynamic_stune_boost 0
     write /sys/module/cpu_input_boost/parameters/input_boost_duration 20
+=======
+
+    # Set CPU Input Boost parameters
+    #write /sys/module/cpu_input_boost/parameters/input_boost_freq_hp 556800
+    #write /sys/module/cpu_input_boost/parameters/input_boost_freq_lp 480000
+    #write /sys/module/cpu_input_boost/parameters/dynamic_stune_boost 0
+    #write /sys/module/cpu_input_boost/parameters/input_boost_duration 20
+>>>>>>> 79334f3d9ccdeaf9c80a530602576b535418420b
 
     # Set thermal restrictions
     write /sys/kernel/msm_thermal/enabled 0
@@ -166,18 +166,22 @@ on enable-low-power
     write /sys/devices/soc/${ro.boot.bootdevice}/${ro.boot.bootdevice}:ufs_variant/pm_qos_enable 1
 
     # Set idle GPU to 133 MHz
-    write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
+    #write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 0
-    write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 0
-    write /sys/class/kgsl/kgsl-3d0/devfreq/min_clock_mhz 133
+    #write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 0
+    write /sys/class/kgsl/kgsl-3d0/min_clock_mhz 133
     write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 133000000
-    write /sys/class/kgsl/kgsl-3d0/devfreq/max_clock_mhz 624
+    write /sys/class/kgsl/kgsl-3d0/max_clock_mhz 624
     write /sys/class/kgsl/kgsl-3d0/devfreq/max_freq 624000000
 
     write /sys/module/workqueue/parameters/power_efficient Y
 
     # Set schedTune boost values (only affects EAS)
+<<<<<<< HEAD
     write /dev/stune/schedtune.sched_boost 10
+=======
+    #write /dev/stune/schedtune.sched_boost 10
+>>>>>>> 79334f3d9ccdeaf9c80a530602576b535418420b
     write /dev/stune/rt/schedtune.sched_boost 30
 
     # update cpusets now that boot is complete and we want better load balancing
@@ -188,10 +192,17 @@ on enable-low-power
     write /dev/cpuset/system-background/cpus 0-2
 
     # Set swappiness and cache pressure
+<<<<<<< HEAD
     write /proc/sys/vm/swappiness 35
     write /proc/sys/vm/vfs_cache_pressure 10
     write /proc/sys/vm/dirty_ratio 20
     write /proc/sys/vm/dirty_background_ratio 5
+=======
+    #write /proc/sys/vm/swappiness 60
+    #write /proc/sys/vm/vfs_cache_pressure 10
+    #write /proc/sys/vm/dirty_ratio 20
+    #write /proc/sys/vm/dirty_background_ratio 5
+>>>>>>> 79334f3d9ccdeaf9c80a530602576b535418420b
 
     write /sys/block/dm-0/queue/read_ahead_kb 128
     write /sys/block/sda/queue/read_ahead_kb 128
@@ -226,7 +237,7 @@ on property:init.svc.recovery=running
 service charger /sbin/chargeonlymode
     class charger
     group system graphics
-    seclabel u:r:charger:s0
+    seclabel u:r:healthd:s0
 
 service vendor.hvdcp_opti /vendor/bin/hvdcp_opti
     class main
